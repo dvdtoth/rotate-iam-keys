@@ -1,6 +1,5 @@
 /*
 Deploy a lambda function that deletes IAM keys of specified groups, triggered periodically.
-Set your groups, schedule and AWS profile
 By @dvdtoth
 */
 
@@ -16,9 +15,20 @@ variable "schedule" {
   description = "Schedule to trigger lambda, default 23:55 Friday. See doc: https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html"
 }
 
+variable "aws_profile" {
+  type        = "string"
+  description = "AWS profile"
+}
+
+variable "aws_region" {
+  type        = "string"
+  default     = "eu-west-2"
+  description = "AWS region"
+}
+
 provider "aws" {
-  region  = "eu-west-2"
-  profile = "YOURPROFILE"
+  region  = "${var.aws_region}"
+  profile = "${var.aws_profile}"
 }
 
 resource "aws_iam_role" "revoke_keys_role" {

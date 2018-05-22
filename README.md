@@ -16,18 +16,18 @@ For schedule expression check https://docs.aws.amazon.com/AmazonCloudWatch/lates
 
 ### Deploying with Terraform
 
-Update variables in revoke_keys.tf: groups, schedule and AWS profile.
+Update variables in production.tfvars
 
 ```
 zip revoke_keys.zip handler.js
 terraform init
-terraform apply
+terraform apply -var-file="production.tfvars"
 ```
 
 
 To remove:
 ```
-terraform destroy
+terraform destroy -var-file="production.tfvars"
 ```  
 
 ### Deploying with Serverless
