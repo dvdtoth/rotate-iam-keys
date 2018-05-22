@@ -1,0 +1,15 @@
+.DS_Store
+.tmp
+
+# Serverless
+admin.env
+.env
+_meta
+.serverless
+
+#  Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*

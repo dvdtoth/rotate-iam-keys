@@ -1,0 +1,23 @@
+service: RevokeKeys
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: eu-west-2
+
+  environment:
+    GROUPS: "Developers, Administrators"
+
+  iamRoleStatements:
+    -   Effect: "Allow"
+        Resource: "*"
+        Action:
+          - "iam:GetGroup"
+          - "iam:ListAccessKeys"
+          - "iam:DeleteAccessKey"
+
+functions:
+  revokeKeys:
+    handler: handler.revoke
+    events:
+      - schedule: cron(55 23 ? * 6 *)
