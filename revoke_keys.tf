@@ -77,7 +77,7 @@ resource "aws_lambda_function" "revoke_keys" {
   function_name    = "RevokeKeys"
   role             = "${aws_iam_role.revoke_keys_role.arn}"
   handler          = "handler.revoke"
-  source_code_hash = "${base64sha256(file("revoke_keys.zip"))}"
+  source_code_hash = "${base64sha256(filebase64sha256("revoke_keys.zip"))}"
   runtime          = "nodejs8.10"
 
   environment {
